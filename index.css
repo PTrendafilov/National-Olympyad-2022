@@ -1,0 +1,160 @@
+/*our css variables  before you change something please read all comments here.*/
+:root{
+  /*
+  color #f4f4f4 is very close to gray and to white.
+  */
+  --under_page_background_color: #f4f4f4;/*This change color under menu*/
+  --letter_color:white;/*You can change color of the all "a" of the sites.*/
+  --left_part_of_the_menu/*only head and margin to right part*/:#3ca9e2;
+  --right_part_of_the_menu:#3ca9e2;/*This part should be equal to --left_part_of_the_menu else the menu will be in two diffierent colors.*/
+  --color_of_the_hamburger:white;/*If you want to change color of the x change variable.*/
+  --seperator_line:#f4f4f4;/*This change seperator line color in the right part of the menu.*/
+  --head_font_size:32px;/*if you want to change font-size of the logo please change 1.(padiing of header li a) and/or 2.(padiing of .header .log) and/or 3.(--left_part_font_size)*/
+  --right_part_font_size:32px;/*if you want to change please check and change 1.(padiing of header li a) and/or 2.(padiing of .header .logo) and/or 3.(--head_font_size)*/
+}
+/*End css variables*/
+/*
+Some errors you can do is:
+    If left part of the menu and header is more than 840 px or smaller, you must to go to 145 row and change the pixels.
+    if you change degree on row 131 or 135 the "X" will not appear correct.
+*/
+body {
+    margin: 0;
+    background-color: var(--under_page_background_color);
+  }
+  
+  a {
+    color: var(--letter_color);
+  }
+  
+  /* header */
+  
+  .header {
+    background-color: #3ca9e2;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #3ca9e2;
+  }
+  
+  .header li a {
+    display: block;
+    padding: 20px 20px;
+    border-right: 1px solid #f4f4f4;
+    text-decoration: none;
+    font-size:var(--right_part_font_size);
+  }
+  
+  .header li a:hover,
+  .header .menu-btn:hover {
+    background-color: #329dd5;
+  }
+  
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: var(--head_font_size);
+    padding: 20px 20px;
+    text-decoration: none;
+  }
+  /* menu */
+  
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
+  }
+  
+  /* menu icon */
+  
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+  }
+  
+  .header .menu-icon .navicon {
+    margin-top: 9px;
+    background: var(--color_of_the_hamburger);
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 21px;
+  }
+  
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: var(--color_of_the_hamburger);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+  }
+  
+  .header .menu-icon .navicon:before {
+    top: 6.5px;
+  }
+  
+  .header .menu-icon .navicon:after {
+    top: -7px;
+  }
+  
+  /* menu btn */
+  
+  .header .menu-btn {
+    display: none;
+  }
+  
+  .header .menu-btn:checked ~ .menu {
+    max-height: 400px;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+  
+  /* responsive hamburger menu */
+  
+  @media (min-width: 1500px) {
+    .header li {
+      float: left;
+    }
+    .header li a {
+      padding: 20px 30px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
